@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CheckCircle, AlertCircle, Instagram, ArrowRight } from "lucide-react";
 
-export default function AuthCallbackPage() {
+function AuthCallbackContent() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('');
   const [userInfo, setUserInfo] = useState<{ name: string; email: string } | null>(null);
@@ -143,5 +143,29 @@ export default function AuthCallbackPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function AuthCallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+          <Card className="bg-gray-900 border-gray-800">
+            <CardHeader className="text-center">
+              <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-purple-500/10 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+              </div>
+              <CardTitle className="text-white">ავტორიზაციის დამუშავება...</CardTitle>
+              <CardDescription className="text-gray-400">
+                გთხოვთ დაელოდოთ, მიმდინარეობს Instagram ანგარიშის დაკავშირება
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </div>
+    }>
+      <AuthCallbackContent />
+    </Suspense>
   );
 }
