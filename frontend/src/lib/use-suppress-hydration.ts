@@ -29,5 +29,5 @@ export function NoSSR({ children }: { children: React.ReactNode }) {
     return null;
   }
 
-  return <>{children}</>;
+  return children as React.ReactElement;
 }
