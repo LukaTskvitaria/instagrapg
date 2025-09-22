@@ -67,15 +67,19 @@ export default function DashboardPage() {
 
   const loadDashboardData = async () => {
     try {
-      // For demo purposes, using mock data
+      // Get user info from localStorage (set during mock login)
+      const userInfo = localStorage.getItem('user_info');
+      const userData = userInfo ? JSON.parse(userInfo) : null;
+      
+      // For demo purposes, using mock data with user-specific info
       const mockData: DashboardData = {
         account: {
           id: "demo-account-id",
-          username: "demo_account",
-          name: "Demo Account",
-          followersCount: 5420,
-          followingCount: 850,
-          mediaCount: 127,
+          username: userData?.instagram_username || "demo_account",
+          name: userData?.name || "Demo Account",
+          followersCount: userData?.followers_count || 15420,
+          followingCount: userData?.following_count || 892,
+          mediaCount: userData?.posts_count || 156,
         },
         metrics: {
           totalReach: 45230,

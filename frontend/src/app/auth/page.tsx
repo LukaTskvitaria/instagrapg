@@ -16,8 +16,22 @@ export default function AuthPage() {
     setIsConnecting(true);
     setError(null);
 
-    // Direct redirect to backend for server-side OAuth
-    window.location.href = `https://instagraph-backend-production.up.railway.app/api/auth/facebook`;
+    // Mock demo mode - simulate successful connection
+    setTimeout(() => {
+      // Simulate successful Instagram connection
+      localStorage.setItem('auth_token', 'demo-token-12345');
+      localStorage.setItem('user_info', JSON.stringify({
+        name: 'Demo User',
+        email: 'demo@instagraph.app',
+        instagram_username: '@demo_account',
+        followers_count: 15420,
+        following_count: 892,
+        posts_count: 156
+      }));
+      
+      // Redirect to dashboard
+      window.location.href = '/dashboard';
+    }, 2000); // 2 second delay to show loading
   };
 
   return (
