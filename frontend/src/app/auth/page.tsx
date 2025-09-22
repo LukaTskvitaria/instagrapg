@@ -23,7 +23,7 @@ export default function AuthPage() {
       fb.login((response: Record<string, unknown>) => {
         if (response.authResponse) {
           // Success - redirect to backend auth endpoint
-          window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'}/auth/facebook`;
+          window.location.href = `https://instagraph-backend-production.up.railway.app/api/auth/facebook`;
         } else {
           setError('Facebook ავტორიზაცია გაუქმდა');
           setIsConnecting(false);
@@ -33,13 +33,8 @@ export default function AuthPage() {
       });
     } else {
       // Fallback - direct redirect
-      const facebookAuthUrl = `https://www.facebook.com/v18.0/dialog/oauth?` +
-        `client_id=${FACEBOOK_APP_ID}&` +
-        `redirect_uri=${encodeURIComponent(window.location.origin + '/auth/callback')}&` +
-        `scope=instagram_basic,pages_read_engagement,business_management&` +
-        `response_type=code`;
-      
-      window.location.href = facebookAuthUrl;
+      // Direct redirect to backend
+      window.location.href = `https://instagraph-backend-production.up.railway.app/api/auth/facebook`;
     }
   };
 
