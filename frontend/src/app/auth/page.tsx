@@ -16,26 +16,8 @@ export default function AuthPage() {
     setIsConnecting(true);
     setError(null);
 
-    // Check if Facebook SDK is loaded
-    if (typeof window !== 'undefined' && (window as unknown as Record<string, unknown>).FB) {
-      // Use Facebook Login
-      const fb = (window as unknown as Record<string, unknown>).FB as { login: (callback: (response: Record<string, unknown>) => void, options: Record<string, unknown>) => void };
-      fb.login((response: Record<string, unknown>) => {
-        if (response.authResponse) {
-          // Success - redirect to backend auth endpoint
-          window.location.href = `https://instagraph-backend-production.up.railway.app/api/auth/facebook`;
-        } else {
-          setError('Facebook ავტორიზაცია გაუქმდა');
-          setIsConnecting(false);
-        }
-      }, {
-        scope: 'instagram_basic,pages_read_engagement,business_management'
-      });
-    } else {
-      // Fallback - direct redirect
-      // Direct redirect to backend
-      window.location.href = `https://instagraph-backend-production.up.railway.app/api/auth/facebook`;
-    }
+    // Direct redirect to backend for server-side OAuth
+    window.location.href = `https://instagraph-backend-production.up.railway.app/api/auth/facebook`;
   };
 
   return (
