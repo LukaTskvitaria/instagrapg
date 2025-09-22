@@ -17,9 +17,9 @@ export default function AuthPage() {
     setError(null);
 
     // Check if Facebook SDK is loaded
-    if (typeof window !== 'undefined' && (window as Record<string, unknown>).FB) {
+    if (typeof window !== 'undefined' && (window as unknown as Record<string, unknown>).FB) {
       // Use Facebook Login
-      const fb = (window as Record<string, unknown>).FB as { login: (callback: (response: Record<string, unknown>) => void, options: Record<string, unknown>) => void };
+      const fb = (window as unknown as Record<string, unknown>).FB as { login: (callback: (response: Record<string, unknown>) => void, options: Record<string, unknown>) => void };
       fb.login((response: Record<string, unknown>) => {
         if (response.authResponse) {
           // Success - redirect to backend auth endpoint
