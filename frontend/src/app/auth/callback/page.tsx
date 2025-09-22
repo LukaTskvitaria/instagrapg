@@ -10,7 +10,7 @@ import { CheckCircle, AlertCircle, Instagram, ArrowRight } from "lucide-react";
 export default function AuthCallbackPage() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = useState('');
-  const [userInfo, setUserInfo] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState<{ name: string; email: string } | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -39,7 +39,7 @@ export default function AuthCallbackPage() {
         setTimeout(() => {
           router.push('/dashboard');
         }, 3000);
-      } catch (err) {
+      } catch {
         setStatus('error');
         setMessage('მონაცემების დამუშავების შეცდომა');
       }

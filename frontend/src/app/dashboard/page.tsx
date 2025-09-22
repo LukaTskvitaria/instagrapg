@@ -17,7 +17,7 @@ import {
   Calendar,
   BarChart3
 } from "lucide-react";
-import { apiClient } from "@/lib/api";
+// import { apiClient } from "@/lib/api";
 
 interface DashboardData {
   account: {
@@ -46,7 +46,7 @@ interface Recommendation {
   id: string;
   type: string;
   title: string;
-  content: any;
+  content: Record<string, unknown>;
   priority: number;
   createdAt: string;
 }
@@ -58,7 +58,7 @@ export default function DashboardPage() {
   const [refreshing, setRefreshing] = useState(false);
 
   // For demo purposes, using a mock account ID
-  const accountId = "demo-account-id";
+  // const accountId = "demo-account-id";
 
   useEffect(() => {
     loadDashboardData();

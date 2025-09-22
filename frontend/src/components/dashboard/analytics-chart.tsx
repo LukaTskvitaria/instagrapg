@@ -6,7 +6,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 interface AnalyticsChartProps {
   title: string;
   description?: string;
-  data: any[];
+  data: Record<string, unknown>[];
   type: 'line' | 'bar';
   dataKey: string;
   xAxisKey: string;

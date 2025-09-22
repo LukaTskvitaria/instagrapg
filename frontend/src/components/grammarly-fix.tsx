@@ -33,7 +33,7 @@ export function GrammarlyFix() {
   return (
     <Script
       id="grammarly-fix"
-      strategy="beforeInteractive"
+      strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: `
           // Prevent Grammarly from adding attributes during SSR
